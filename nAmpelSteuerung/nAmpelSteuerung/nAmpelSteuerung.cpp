@@ -8,9 +8,14 @@ class nAmpel
 
 
 public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und die zeitliche Verzögerung beim Umschalten festgelegt.
-	nAmpel(int ZeitVerz)
+	nAmpel(int deltaTime)
 	{
-		zv = ZeitVerz;
+		//Sleeptime
+
+		//s_dT = deltaTime;
+		//s_dT1 = deltaTime;
+		//g_dT = deltaTime;
+		//g_dT1 = deltaTime;
 	}
 	// Methoden:
 	void anzeige() //zur Darstellung des momentanen Zustands
@@ -21,13 +26,12 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 			cout << "Aktuelle Ampellage: rot\n";
 		if (gelb)
 			cout << "Aktuelle Ampellage: gelb\n";
-
 	}
 	void stop() //zum Umschalten der Ampel auf rot
 	{
 		if (rot && !gelb && !gruen)
 			cout << "Die Ampel ist bereits auf Rot.\n";
-
+		Sleep(s_dT);
 		if (gruen && !gelb && !rot)
 		{
 			cout << "Umschaltung von Gruen auf Gelb.\n";
@@ -35,6 +39,7 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 			gelb = true;
 			anzeige();
 		}
+		Sleep(s_dT1);
 		if (gelb && !gruen && !rot)
 		{
 			cout << "Umschaltung von Gelb auf Rot.\n";
@@ -47,7 +52,8 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 	void go() //zum Umschalten der Ampel auf grün
 	{
 		if (!rot && !gelb && gruen)
-			cout << "Die Ampel ist bereits auf Gruen.\n";		
+			cout << "Die Ampel ist bereits auf Gruen.\n";
+		Sleep(g_dT);
 		if (rot && !gelb && !gruen)
 		{
 			cout << "Umschaltung von Rot auf Gelb.\n";
@@ -55,6 +61,7 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 			gelb = true;
 			anzeige();
 		}
+		Sleep(g_dT1);
 		if (gelb && !rot && !gruen)
 		{
 			cout << "Umschaltung von Gelb auf Gruen.\n";
@@ -68,7 +75,10 @@ private:
 	bool rot = false;
 	bool gelb = false;
 	bool gruen = true; //Es wird mit Grün gestartet
-	int zv = 0;
+	int s_dT = 100;
+	int s_dT1 = 500;
+	int g_dT = 200;
+	int g_dT1 = 800;
 };
 
 int main()
@@ -95,4 +105,3 @@ int main()
 	system("pause");
 	return 0;
 }
-
