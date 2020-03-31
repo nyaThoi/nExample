@@ -86,7 +86,10 @@ int main()
 			gruen.go();
 		if (schalten == "R")
 			gruen.stop();
+		if (schalten == "A")
+			gruen.anzeige();
 	}
+
 
 
 	system("pause");
