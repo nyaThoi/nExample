@@ -241,8 +241,14 @@ private:
 	}
 
 };
-
+std::string val()
+{
+	return "ROT";
+}
 int main()
 {
-	std::cout << "Example \n";
+
+
+	std::cout << val();
 }
+
