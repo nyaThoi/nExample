@@ -27,6 +27,18 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 		if (gelb)
 			cout << "Aktuelle Ampellage: gelb\n";
 	}
+	string anzeigeinString()
+	{
+		string tmp;
+		if (gruen)
+			tmp = "Aktuelle Ampellage: gruen\n";
+		if (rot)
+			tmp = "Aktuelle Ampellage: rot\n";
+		if (gelb)
+			tmp = "Aktuelle Ampellage: gelb\n";
+		
+		return tmp;
+	}
 	void stop() //zum Umschalten der Ampel auf rot
 	{
 		if (rot && !gelb && !gruen)
@@ -37,7 +49,9 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 			cout << "Umschaltung von Gruen auf Gelb.\n";
 			gruen = false;
 			gelb = true;
-			anzeige();
+			//anzeige();
+			cout << anzeigeinString();
+
 		}
 		Sleep(s_dT1);
 		if (gelb && !gruen && !rot)
@@ -45,7 +59,8 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 			cout << "Umschaltung von Gelb auf Rot.\n";
 			gelb = false;
 			rot = true;
-			anzeige();
+			//anzeige();
+			cout << anzeigeinString();
 		}
 
 	}
@@ -59,7 +74,9 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 			cout << "Umschaltung von Rot auf Gelb.\n";
 			rot = false;
 			gelb = true;
-			anzeige();
+			//anzeige();
+			cout << anzeigeinString();
+
 		}
 		Sleep(g_dT1);
 		if (gelb && !rot && !gruen)
@@ -67,7 +84,8 @@ public: // Konstruktor: Beim Erzeugen eines Objekts werden der Startzustand und 
 			cout << "Umschaltung von Gelb auf Gruen.\n";
 			gelb = false;
 			gruen = true;
-			anzeige();
+			//anzeige();
+			cout << anzeigeinString();
 		}
 	}
 
@@ -87,7 +105,9 @@ int main()
 	cout << "AMPEL\n\n";
 	nAmpel gruen(200);
 
-	gruen.anzeige();
+	//gruen.anzeige();
+	cout << gruen.anzeigeinString();
+
 	while (schalten != "B")
 	{
 		cout << " G fuer auf Gruen schalten, R fuer auf Rot schalten, B zum beenden\n";
@@ -97,9 +117,9 @@ int main()
 		if (schalten == "R")
 			gruen.stop();
 		if (schalten == "A")
-			gruen.anzeige();
+			//gruen.anzeige();
+			cout << gruen.anzeigeinString();
 	}
-
 
 
 	system("pause");
